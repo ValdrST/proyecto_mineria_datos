@@ -18,6 +18,8 @@
 		<node id="14" name="Correlations" qualified_name="Orange.widgets.data.owcorrelations.OWCorrelations" project_name="Orange3" version="" title="Correlations" position="(1159.0, 766.0)" />
 		<node id="15" name="Select Columns" qualified_name="Orange.widgets.data.owselectcolumns.OWSelectAttributes" project_name="Orange3" version="" title="Linea de credito estimada" position="(575.0, 94.0)" />
 		<node id="16" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWDataTable" project_name="Orange3" version="" title="Data Table (1)" position="(391.0, 222.0)" />
+		<node id="17" name="Save Data" qualified_name="Orange.widgets.data.owsave.OWSave" project_name="Orange3" version="" title="Save Data" position="(528.0, 603.0)" />
+		<node id="18" name="CN2 Rule Viewer" qualified_name="Orange.widgets.visualize.owruleviewer.OWRuleViewer" project_name="Orange3" version="" title="CN2 Rule Viewer" position="(1093.0, 507.0)" />
 	</nodes>
 	<links>
 		<link id="0" source_node_id="1" sink_node_id="0" source_channel="Data" sink_channel="Data" enabled="true" />
@@ -36,6 +38,8 @@
 		<link id="13" source_node_id="9" sink_node_id="15" source_channel="Data" sink_channel="Data" enabled="true" />
 		<link id="14" source_node_id="2" sink_node_id="16" source_channel="Data" sink_channel="Data" enabled="true" />
 		<link id="15" source_node_id="1" sink_node_id="11" source_channel="Data" sink_channel="Data" enabled="true" />
+		<link id="16" source_node_id="9" sink_node_id="17" source_channel="Data" sink_channel="Data" enabled="true" />
+		<link id="17" source_node_id="8" sink_node_id="18" source_channel="Model" sink_channel="Classifier" enabled="true" />
 	</links>
 	<annotations />
 	<thumbnail />
@@ -370,6 +374,8 @@ AABLAmqIAQAASwFqiQEAAEsCaooBAABLAmqLAQAASwJqjAEAAEsBao0BAABLAXVol32UKGqPAQAA
 SwNqkAEAAEsDapEBAABLA3V1YmV1Lg==
 </properties>
 		<properties node_id="16" format="literal">{'auto_commit': True, 'color_by_class': True, 'controlAreaVisible': True, 'dist_color_RGB': (220, 220, 220, 255), 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x02\x1d\x00\x00\x01C\x00\x00\x05\xd0\x00\x00\x03\x82\x00\x00\x02\x1d\x00\x00\x01C\x00\x00\x05\xd0\x00\x00\x03\x82\x00\x00\x00\x00\x00\x00\x00\x00\x07\x80\x00\x00\x02\x1d\x00\x00\x01C\x00\x00\x05\xd0\x00\x00\x03\x82', 'select_rows': False, 'selected_cols': [], 'selected_rows': [], 'show_attribute_labels': True, 'show_distributions': True, '__version__': 2}</properties>
+		<properties node_id="17" format="literal">{'add_type_annotations': True, 'auto_save': True, 'controlAreaVisible': True, 'filter': 'Comma-separated values (*.csv)', 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x03T\x00\x00\x01\xaa\x00\x00\x04_\x00\x00\x02G\x00\x00\x03U\x00\x00\x01\xc9\x00\x00\x04^\x00\x00\x02F\x00\x00\x00\x00\x00\x00\x00\x00\x07\x80\x00\x00\x03U\x00\x00\x01\xc9\x00\x00\x04^\x00\x00\x02F', 'stored_name': 'datos_procesados.csv', 'stored_path': 'C:/Users/valdr/Documents/proyecto_final/datos', '__version__': 2}</properties>
+		<properties node_id="18" format="literal">{'compact_view': False, 'controlAreaVisible': True, 'savedWidgetGeometry': b"\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x02/\x00\x00\x01\x08\x00\x00\x06\x10\x00\x00\x02\xe9\x00\x00\x020\x00\x00\x01'\x00\x00\x06\x0f\x00\x00\x02\xe8\x00\x00\x00\x00\x00\x00\x00\x00\x07\x80\x00\x00\x020\x00\x00\x01'\x00\x00\x06\x0f\x00\x00\x02\xe8", '__version__': 1}</properties>
 	</node_properties>
 	<session_state>
 		<window_groups />
