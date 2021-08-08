@@ -52,7 +52,53 @@ La variable objetivo sera
 ## Interpretación algoritmos usados
 
 ### Algoritmos usados en fase de reglas de preaprobación
-Para esta fase se 
-#### 
+Para esta fase se usaron los siguientes algoritmos
+* Arbol
+* Inducción de reglas CN2
+* Mosaico
+* Red neuronal
+* kNN
+#### Mosaico
+En ese algoritmo se encontro el siguiente mosaico:
+![Mosaico Punto descision](image/captura_1.png)
+
+La iterpretacion del mismo es que el punto de descicion que concentra la mayoria de las solicitudes rechazadas es el PS1
+
+![Mosaico segmento cliente](image/captura_2.png)
+
+En este otro mosaico se puede ver la relación entre el segmento de cliente y la aprobación o rechazo de las solicitudes. Se puede ver que Aquellos clientes 
+que no pertenecen a un segmento de cliente son mas rechazados, adicionalmente los segmentos Alto A-B-C y Medio A-B son los que tienen aprobación mas alta
+
+![Mosaico solicitudes rechazadas](image/captura_3.png)
+
+En este mosaico se ve la relación directa entre el numero de solicitudes rechazadas vs la aprobación, en este caso si hay al menos una solicitud es probable que sea rechazado el crédito.
+
+#### Arbol
+En este otro algoritmo se buscara ver algunas reglas que se pueden generar.
+
+![Arbol_1](image/captura_4.png)
+
+En este arbol se puede confirmar lo visto en el algoritmos del mosaico, Si hay mas de 0 solicitudes rechazadas la solicitud se rechazara, asi como lo de los segmentos de clientes que suelen ser aprobados.
+Adicionalmente a lo anterior se pueden ver caracteristicas adicionales que deben ser tomadas en cuenta para la aprobación, dentro del segmento medio D o sin segmento estos tienen una probabilidad mayor de aprobación si el ingreso inferido es mayor a 7232, dentro de este se pueden ver las reglas particulares de los puntos de decision: En el caso de CN0 se toma en cuenta el tipo de vivienda, si es renta es menos probable ser aprobado a si es de los otros tipos, en el caso de PS1 importa mas el ingreso inferido el cual debe ser mayor.
+
+#### CN2
+
+Para complementar las reglas vistas en el algoritmo de arbol se usara el CN2 lo cual dio el siguiente resultado:
+
+![CN2_1](image/captura_5.png)
+
+Aqui se confirman las reglas vistas anteriormente sobre la influencia del segmento del ciente, el numero de solicitudes rechazadas y el punto de decision.
+
+#### Red neuronal y Knn
+
+Para estos algoritmos se hara uso de la prueba y comparación para poder saber cual es el mas conveniente.
+
+![test_1](image/captura_6.png)
+
+Se puede observar en la estimación usando los datos el algoritmo que tiene una precision mas alta es el del arbol seguido de la red neuronal.
+
+![test_2](image/captura_7.png)
+
+Haciendo una validación cruzada el mas preciso es el CN2, seguido de la red neuronal por lo que se pueden tomar en cuenta todas las reglas de CN2 para hacer estimaciones y usar la red neuronal para predecir de manera automatica la aprobación o rechazo de cada solicitud.
 
 
