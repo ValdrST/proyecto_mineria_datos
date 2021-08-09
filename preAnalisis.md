@@ -8,7 +8,7 @@
 
 ### Fases de analisis
 1) estimación de reglas de preaprobación, se bucara tener aprobado y no aprobado
-2) Creación de modelo predictivo de variable de riesgo que sera un valor de 0-1
+2) Creación de modelo predictivo de constante de riesgo que sera un valor de 0-1
 3) Calculo de linea de crédito preaprobada que sera un valor en moneda o unidades de crédito
 
 ## Reporte estadisticas de de información transformada
@@ -49,7 +49,7 @@ La variable objetivo sera
 
 * En APROBACION_TC se fusionan los valores pre-aprobado y aprobado
 
-### transformaciones para fase de variable de riesgo
+### transformaciones para fase de constante de riesgo
 
 * NIVEL_RIESGO se numeriza de la siguiente forma: Alto -> 1 Medio -> 0.75 Bajo 0.5 y Minimo 0.25
 * Solo se toman los valores iferidos de la fase pasada como la nueva APROBACION_TC
@@ -113,12 +113,100 @@ Se puede observar en la estimación usando los datos el algoritmo que tiene una 
 
 Haciendo una validación cruzada el mas preciso es el CN2, seguido de la red neuronal por lo que se pueden tomar en cuenta todas las reglas de CN2 para hacer estimaciones y usar la red neuronal para predecir de manera automatica la aprobación o rechazo de cada solicitud.
 
-### Algoritmos usados en fase de variable de riesgo
+### Algoritmos usados en fase de constante de riesgo
 Para esta fase se usaron los siguientes algoritmos
 * K-medias
 * Mosaico
+* Grafica de dispersión
 * Red neuronal
 * Regresión lineal
 
+#### Red Neuronal y regresión lineal
+
+Para esta parte se requiere obtener una variable que ira de 0-1, como anteriormente el NIVEL_RIESGO se le asigno un valor numerico
+que va de 0 a 1 entonces se buscara que una red neuronal o una regresión lineal nos de ese valor.
+
+La red neuronal se configuro de la siguiente forma
+
+* Neuronas en las capas ocultas 128,64
+* Activacion ReLu
+* Sover Adam
+* Alfa 0.0007
+
+La regresion lineal de esta forma
+
+* Regularización Lasso con Alpha a 0.0003
+
+Al evaluar los 2 algoritmos predictivos se obtuvo que la regresión lineal da mejores resultados con un R2 de 0.703 vs 0.623 de la red neuronal
+
+![test_3](image/captura_12.png)
+
+Por lo que a partir de ahora se analizaran los resultados de la regresión lineal
+
 #### K-medias
+
+Este algoritmo se uso para poder evaluar los resultados anteriores. Este algoritmo encontro 3 clusters.
+
+![test_3](image/captura_13.png)
+
+#### scatter plot
+
+En este se analiza lo encontrado en k medias obteniendo lo siguiente
+
+![test_4](image/captura_14.png)
+
+![test_5](image/captura_15.png)
+
+En ambas graficas de dispersion, la primera numero de creditos previos vs ingreso inferido y la segunda ingreso inferido y variable de riesgo calculada se puede obtener lo siguiente:
+
+En rojo C1 se tiene clientes con un ingreso inferido bajo, azul con ingreso alto y en verde aquellos que tienen creditos previos, por lo que se puede deducir que no existe mucha relacion entre el riesgo y el ingreso inferido.
+
+#### Mosaico
+
+![test_6](image/captura_16.png)
+
+Lo que se puede rescatar de aqui es que los segmentos de clientes Alto A y Alto B son los que representan menos riesgo, en el caso de los clientes sin segmento son los que tienen el mayor riesgo.
+
+### Algoritmos usados en fase de estimación de linea de credito
+
+Para esta fase se usaron los siguientes algoritmos
+
+* kNN
+* Regresion Linear
+* Red neuronal
+* Mosaico
+* Grafica de dispersión
+
+#### kNN,  Regresion linear y Red neuronal
+
+Para KNN se configuro de la siguiente forma
+* Numero de vecinos 5
+* Metrica euclidiana
+* Pesos uniformes
+
+Para la regresión linear
+
+* Sin regularizar
+
+Para la red neuronal
+
+* Neuronas en capas ocultas 64,128,32,16,8
+* Activacion ReLu
+* Solver Adam
+* Alfa 0.0003
+
+Se hizo una validación cruzada obteniendo lo siguiente
+
+![test_7](image/captura_17.png)
+
+Se puede interpretar que el algoritmo que dio mejores resultados fue la red neuronal con un R2 de 0.064 seguido de la regresión lineal con un 0.047 y la kNN con -0.214.
+
+Se optara por usar los datos de la red neuronal, no son perfectos pero son los mejores de los modelos usados.
+
+#### Grafica de dispersión
+
+
+
+
+
 
