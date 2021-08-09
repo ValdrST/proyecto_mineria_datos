@@ -49,6 +49,18 @@ La variable objetivo sera
 
 * En APROBACION_TC se fusionan los valores pre-aprobado y aprobado
 
+### transformaciones para fase de variable de riesgo
+
+* NIVEL_RIESGO se numeriza de la siguiente forma: Alto -> 1 Medio -> 0.75 Bajo 0.5 y Minimo 0.25
+* Solo se toman los valores iferidos de la fase pasada como la nueva APROBACION_TC
+* En APROBACION_TC solo se toman los registros con el valor Aprobado, esto porque el riesgo solo se calcula para creditos que seran usados, este pasa a ser la variable objetivo
+
+### Transformaciones para fase de linea de credito inferida
+
+* Se toman las transformaciones de la fase pasada
+* LINEA_CREDITO_FINAL pasa a ser la variable objetivo
+* Se seleccionan los registros que tienen LINEA_CREDITO_FINAL > 1.0 descartando 1278 registros
+
 ## Interpretación algoritmos usados
 
 ### Algoritmos usados en fase de reglas de preaprobación
@@ -101,4 +113,12 @@ Se puede observar en la estimación usando los datos el algoritmo que tiene una 
 
 Haciendo una validación cruzada el mas preciso es el CN2, seguido de la red neuronal por lo que se pueden tomar en cuenta todas las reglas de CN2 para hacer estimaciones y usar la red neuronal para predecir de manera automatica la aprobación o rechazo de cada solicitud.
 
+### Algoritmos usados en fase de variable de riesgo
+Para esta fase se usaron los siguientes algoritmos
+* K-medias
+* Mosaico
+* Red neuronal
+* Regresión lineal
+
+#### K-medias
 
